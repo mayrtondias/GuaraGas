@@ -1,7 +1,7 @@
 GuaraGas
 ========
 Grupo:
-Fellipe Henrique Mahon\n 
-Mayrton Dias
+Fellipe Henrique Mahon,
+Mayrton Dias e
 Vitor Soares
 
