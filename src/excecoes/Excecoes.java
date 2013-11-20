@@ -12,6 +12,7 @@ public class Excecoes extends Exception{
     private String evento;
 
     public Excecoes(){
+        this("");
     }
     
     public Excecoes(String evento) {

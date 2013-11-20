@@ -14,7 +14,7 @@ public class Usuario {
     private String cpf;
     
     public Usuario(){
-        
+        this("",0,"");
     }
     
     public Usuario(String nome, int senha,String cpf) {
@@ -47,6 +47,13 @@ public class Usuario {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "nome = " + nome + ", senha = " + senha + ", cpf = " + cpf + '}' + "\n";
+    }
+    
+    
 
     
     
