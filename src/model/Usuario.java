@@ -8,6 +8,7 @@ package model;
  *
  * @author aluno
  */
+
 public class Usuario {
     private String nome;
     private int senha;
