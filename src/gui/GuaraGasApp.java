@@ -6,9 +6,7 @@ package gui;
 
 import excecoes.Excecoes;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
 import javax.swing.JOptionPane;
 import infra.ControleEntidades;
 import model.Cliente;
