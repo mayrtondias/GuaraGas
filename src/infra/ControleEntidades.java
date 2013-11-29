@@ -25,7 +25,7 @@ public class ControleEntidades {
     ArrayList <Usuario> usuarios = new ArrayList <Usuario>();
     
     //-------------------------------------Funcionario--------------------------------------------------------------------------------------
-    
+    //função responsavel pelo tratamento de exceção na operação de inserir funcionario
     public void inserirFuncionario(String nome, String codigo ) throws Excecoes{
        
         int verificacao = Integer.parseInt(codigo);
@@ -37,7 +37,7 @@ public class ControleEntidades {
         }
             
     }
-    
+    //verifica a existência de um funcionario com o mesmo codigo
     public boolean verificarDuplicidadeFuncionario(String codigo){
         for(Funcionario aux2 : funcionarios){
             if(aux2.getCodigo().equalsIgnoreCase(codigo)){
@@ -52,7 +52,7 @@ public class ControleEntidades {
     }
     
      //-------------------------------------------------Cliente------------------------------------------------------------------------------
-    
+    //função responsavel pelo tratamento de exceção na operação de inserir cliente
     public void inserirCliente(String nome, String codigo ) throws Excecoes{
         if(verificarDuplicidadeCliente(codigo)){
             throw new Excecoes("Código já existente \nAlgum cliente cadastrado já o possui");
@@ -62,7 +62,7 @@ public class ControleEntidades {
         }
             
     }
-    
+    //verifica a existencia de um cliente com o mesmo codigo
     public boolean verificarDuplicidadeCliente(String codigo){
         for(Cliente aux2 : clientes){
             if(aux2.getCodigo().equalsIgnoreCase(codigo)){
@@ -77,7 +77,7 @@ public class ControleEntidades {
     }
     
     //----------------------------------------------------Usuario---------------------------------------------------------------------------
-    
+    //função responsavel pelo tratamento de exceção na operação de inserir  
     public void inserirUsuario(String nome, int senha,String cpf ) throws Excecoes{
         if(verificarDuplicidadeUsuario(cpf)){
             throw new Excecoes("Cpf já existente \nAlgum usuario cadastrado já o possui");
@@ -87,7 +87,7 @@ public class ControleEntidades {
         }
             
     }
-    
+    //verifica a existencia de um usuário com o mesmo codigo
     public boolean verificarDuplicidadeUsuario(String cpf){
         for(Usuario aux : usuarios){
             if(aux.getCpf().equalsIgnoreCase(cpf)){

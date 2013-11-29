@@ -8,6 +8,7 @@ package model;
  *
  * @author aluno
  */
+//classe responsável pelas propriedades do Funcionario
 public class Funcionario {
     private String nome;
     private String codigo;

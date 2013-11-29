@@ -42,7 +42,7 @@ public class GuaraGasApp {
            
            switch (op){
                
-            case 1:
+            case 1://opção do cadastro de usuario
                 while(true){   
                     try{
                         String nome = JOptionPane.showInputDialog("Forneca seu nome");
@@ -60,7 +60,7 @@ public class GuaraGasApp {
                           }
                     }
                 break;
-            case 2:
+            case 2://opção do cadastro de cliente
                  while(true){   
                     try{
                         String nome = JOptionPane.showInputDialog("Forneca seu nome");
@@ -77,7 +77,7 @@ public class GuaraGasApp {
                     }
                 break;
                 
-            case 3:
+            case 3://opção do cadastro de funcionario
                  while(true){   
                     try{
                         String nome = JOptionPane.showInputDialog("Forneca seu nome");
@@ -94,7 +94,7 @@ public class GuaraGasApp {
                     }
                 break;
                 
-            case 4:
+            case 4://opção listar usuario
                 ArrayList <Usuario> usuarios;
                 aux = "";
                 
@@ -105,7 +105,7 @@ public class GuaraGasApp {
                 JOptionPane.showMessageDialog(null, aux);
                 break;
                 
-            case 5:
+            case 5://opção listar cliente
                 ArrayList <Cliente> clientes;
                 aux = "";
                 
@@ -116,7 +116,7 @@ public class GuaraGasApp {
                 JOptionPane.showMessageDialog(null, aux);              
                 break;
                 
-            case 6:
+            case 6://opção listar funcionario
                 ArrayList <Funcionario> funcionarios;
                 aux = "";
                 
@@ -127,7 +127,7 @@ public class GuaraGasApp {
                 JOptionPane.showMessageDialog(null, aux);
                 break;
                 
-            case 0:
+            case 0://encerramento do programa
                 System.exit(0);
                 break;
                 

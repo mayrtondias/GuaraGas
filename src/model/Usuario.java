@@ -8,7 +8,7 @@ package model;
  *
  * @author aluno
  */
-
+//classe responsavel pelas propriedades do usuario
 public class Usuario {
     private String nome;
     private int senha;
