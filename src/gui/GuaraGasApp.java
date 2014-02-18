@@ -5,7 +5,6 @@
 package gui;
 
 import excecoes.Excecoes;
-import java.util.ArrayList;
 import java.util.*;
 import javax.swing.JOptionPane;
 import infra.ControleEntidades;
@@ -27,37 +26,45 @@ public class GuaraGasApp {
         ControleEntidades obj = new ControleEntidades();
         String aux = "";
         
-        int op;    
+        int op=0; 
+        
         while(true){
-           
-            //Apresentacao de opcoes
-           op = Integer.parseInt(JOptionPane.showInputDialog("Forneca uma das opcoes \n\n"
-                   + "1 - Cadastro de Usuarios \n"
-                   + "2 - Cadastro de Clientes \n"
-                   + "3 - Cadastro de Funcionarios \n"
-                   + "4 - Listar Usuarios \n"
-                   + "5 - Listar Clientes \n"
-                   + "6 - Listar Funcionarios \n"
-                   + "0 - Sair \n"));
-           
-           switch (op){
+            
+            do{
+                try{
+                    //Apresentacao de opcoes
+                    op = Integer.parseInt(JOptionPane.showInputDialog("Forneca uma das opcoes \n\n"
+                            + "1 - Cadastro de Usuarios \n"
+                            + "2 - Cadastro de Clientes \n"
+                            + "3 - Cadastro de Funcionarios \n"
+                            + "4 - Listar Usuarios \n"
+                            + "5 - Listar Clientes \n"
+                            + "6 - Listar Funcionarios \n"
+                            + "0 - Sair \n"));
+                    break;
+                }catch(NumberFormatException evento){
+                    JOptionPane.showMessageDialog(null,"O valor inserido deverá ser um numero inteiro!");
+                }
+            }while(true);
+            
+            switch (op){
                
-            case 1://opção do cadastro de usuario
-                while(true){   
-                    try{
-                        String nome = JOptionPane.showInputDialog("Forneca seu nome");
-                        aux = JOptionPane.showInputDialog("Forneca sua senha");
-                        int senha = Integer.parseInt(aux);
+                case 1://opção do cadastro de usuario
+                    while(true){   
+                        try{
+                            String nome = JOptionPane.showInputDialog("Forneca seu nome");
+                            aux = JOptionPane.showInputDialog("Forneca sua senha");
+                            int senha = Integer.parseInt(aux);
 
-                        String cpf = JOptionPane.showInputDialog("Forneca seu CPF");
-                        obj.inserirUsuario(nome,senha,cpf);
-                        break;
+                            String cpf = JOptionPane.showInputDialog("Forneca seu CPF");
+                            obj.inserirUsuario(nome,senha,cpf);
+                            break;
 
-                    }catch(NumberFormatException evento){
-                        JOptionPane.showMessageDialog(null, "Formato inválido,informe valores númericos");
-                    }catch(Excecoes evento) {
-                              JOptionPane.showMessageDialog(null, evento.trataExcecoes());
-                          }
+                        }catch(NumberFormatException evento){
+                            JOptionPane.showMessageDialog(null, "Formato inválido,informe valores númericos");
+                        }catch(Excecoes evento) {
+                                  JOptionPane.showMessageDialog(null, evento.trataExcecoes());
+                        }
                     }
                 break;
             case 2://opção do cadastro de cliente
