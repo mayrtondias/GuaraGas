@@ -7,7 +7,7 @@ package gui;
 import excecoes.Excecoes;
 import java.util.*;
 import javax.swing.JOptionPane;
-import infra.ControleEntidades;
+import infra.FacadeControleEntidades;
 import model.Cliente;
 import model.Funcionario;
 import model.Usuario;
@@ -23,7 +23,7 @@ public class GuaraGasApp {
      */
     public static void main(String[] args) {
         
-        ControleEntidades obj = new ControleEntidades();
+        FacadeControleEntidades facade = FacadeControleEntidades.getInstance();
         String aux = "";
         
         int op=0; 
@@ -57,13 +57,11 @@ public class GuaraGasApp {
                             int senha = Integer.parseInt(aux);
 
                             String cpf = JOptionPane.showInputDialog("Forneca seu CPF");
-                            obj.inserirUsuario(nome,senha,cpf);
+                            facade.inserirUsuario(nome,senha,cpf);
                             break;
 
                         }catch(NumberFormatException evento){
                             JOptionPane.showMessageDialog(null, "Formato inválido,informe valores númericos");
-                        }catch(Excecoes evento) {
-                                  JOptionPane.showMessageDialog(null, evento.trataExcecoes());
                         }
                     }
                 break;
@@ -74,14 +72,12 @@ public class GuaraGasApp {
                         String codigo = JOptionPane.showInputDialog("Forneca seu codigo de identificacao (numeros inteiros)");
                         int testa_excecao = Integer.parseInt(codigo); //apenas para garantir que o codigo eh em numeros inteiros
                         
-                        obj.inserirCliente(nome,codigo);
+                        facade.inserirCliente(nome,codigo);
                         break;
                     }catch(NumberFormatException evento){
                         JOptionPane.showMessageDialog(null, "Formato inválido,informe valores númericos");
-                    }catch(Excecoes evento) {
-                              JOptionPane.showMessageDialog(null, evento.trataExcecoes());
-                          }
                     }
+                }
                 break;
                 
             case 3://opção do cadastro de funcionario
@@ -91,13 +87,11 @@ public class GuaraGasApp {
                         String codigo = JOptionPane.showInputDialog("Forneca seu codigo de identificacao (numeros inteiros)");
                         int testa_excecao = Integer.parseInt(codigo); //apenas para garantir que o codigo eh em numeros inteiros
                         
-                        obj.inserirFuncionario(nome,codigo);
+                        facade.inserirFuncionario(nome,codigo);
                         break;
                     }catch(NumberFormatException evento){
                         JOptionPane.showMessageDialog(null, "Formato inválido,informe valores númericos");
-                    }catch(Excecoes evento) {
-                              JOptionPane.showMessageDialog(null, evento.trataExcecoes());
-                          }
+                    }
                     }
                 break;
                 
@@ -105,7 +99,7 @@ public class GuaraGasApp {
                 ArrayList <Usuario> usuarios;
                 aux = "";
                 
-                usuarios = obj.listAllUsuarios();
+                usuarios = facade.listAllUsuarios();
                 for(Usuario list : usuarios){
                     aux = "" + aux + "" + list.toString();
                 }
@@ -116,7 +110,7 @@ public class GuaraGasApp {
                 ArrayList <Cliente> clientes;
                 aux = "";
                 
-                clientes = obj.listAllClientes();
+                clientes = facade.listAllClientes();
                 for(Cliente list : clientes){
                     aux = "" + aux + "" + list.toString();
                 }
@@ -127,7 +121,7 @@ public class GuaraGasApp {
                 ArrayList <Funcionario> funcionarios;
                 aux = "";
                 
-                funcionarios = obj.listAllFuncionarios();
+                funcionarios = facade.listAllFuncionarios();
                 for(Funcionario list : funcionarios){
                     aux = "" + aux + "" + list.toString();
                 }
