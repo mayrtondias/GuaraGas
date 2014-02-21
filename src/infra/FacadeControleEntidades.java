@@ -14,8 +14,9 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author jesus
+ * @author aluno
  */
+
 public class FacadeControleEntidades {
     private static FacadeControleEntidades myInstance=null;
     //Excecoes exercoes;
