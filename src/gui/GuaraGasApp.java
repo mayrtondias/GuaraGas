@@ -53,6 +53,9 @@ public class GuaraGasApp {
                     while(true){   
                         try{
                             String nome = JOptionPane.showInputDialog("Forneca seu nome");
+                           
+                            System.out.println(verificarNome(nome, 5, 100));
+                            
                             aux = JOptionPane.showInputDialog("Forneca sua senha");
                             int senha = Integer.parseInt(aux);
 
@@ -135,10 +138,27 @@ public class GuaraGasApp {
             default :
                 JOptionPane.showMessageDialog(null, "Opcao Inválida");
             } 
-            
      }
         
     }
-}
+    
+    public static boolean verificarNome(String campo,int max, int min){
         
+        if((campo.length()>max)||(campo.length()<min)){
+            return false;
+        }
+        
+        for (int i = 0; i < campo.length(); i++) {  
+           if (Character.isDigit(campo.charAt(i)))   
+              return false;  
+        }
+        
+        return true;
+    }
+    
+    public boolean verificarIdade(int campo,int max, int min){
+        return (campo <= max) && (campo >= min);
+    }
 
+    
+}
