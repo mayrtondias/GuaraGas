@@ -15,7 +15,7 @@ import model.Usuario;
 
 /**
  *
- * @author Vitor
+ * @author aluno
  */
 //Aqui estará todas as operacoes logicas aplicadas aos ArrayList's das classes : Usuario, Cliente e Funcionario
 public class ControleEntidades {
