@@ -1,27 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
-import excecoes.Excecoes;
-import java.util.*;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
-import infra.FacadeControleEntidades;
+
 import model.Cliente;
 import model.Funcionario;
 import model.Usuario;
+import infra.FacadeControleEntidades;
 
-/**
- *
- * @author aluno
- */
 public class GuaraGasApp {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+	public static void main(String[] args) {
         
         FacadeControleEntidades facade = FacadeControleEntidades.getInstance();
         String aux = "";
@@ -43,32 +32,37 @@ public class GuaraGasApp {
                             + "0 - Sair \n"));
                     break;
                 }catch(NumberFormatException evento){
-                    JOptionPane.showMessageDialog(null,"O valor inserido dever√° ser um numero inteiro!");
+                    JOptionPane.showMessageDialog(null,"O valor inserido dever· ser um numero inteiro!");
                 }
             }while(true);
             
             switch (op){
                
-                case 1://op√ß√£o do cadastro de usuario
+                case 1://opÁ„o do cadastro de usuario
                     while(true){   
                         try{
+                        	boolean testeNome;
                             String nome = JOptionPane.showInputDialog("Forneca seu nome");
                            
-                            System.out.println(verificarNome(nome, 5, 100));
+                            testeNome=verificarCampo(nome, 50, 5);
                             
                             aux = JOptionPane.showInputDialog("Forneca sua senha");
                             int senha = Integer.parseInt(aux);
 
                             String cpf = JOptionPane.showInputDialog("Forneca seu CPF");
-                            facade.inserirUsuario(nome,senha,cpf);
-                            break;
+                            
+                            
+                            if(testeNome==true){
+                            	facade.inserirUsuario(nome,senha,cpf);
+                            	break;
+                            }
 
                         }catch(NumberFormatException evento){
-                            JOptionPane.showMessageDialog(null, "Formato inv√°lido,informe valores n√∫mericos");
+                            JOptionPane.showMessageDialog(null, "Formato inv·lido,informe valores n˙mericos");
                         }
                     }
                 break;
-            case 2://op√ß√£o do cadastro de cliente
+            case 2://opÁ„o do cadastro de cliente
                  while(true){   
                     try{
                         String nome = JOptionPane.showInputDialog("Forneca seu nome");
@@ -78,12 +72,12 @@ public class GuaraGasApp {
                         facade.inserirCliente(nome,codigo);
                         break;
                     }catch(NumberFormatException evento){
-                        JOptionPane.showMessageDialog(null, "Formato inv√°lido,informe valores n√∫mericos");
+                        JOptionPane.showMessageDialog(null, "Formato inv·lido,informe valores n˙mericos");
                     }
                 }
                 break;
                 
-            case 3://op√ß√£o do cadastro de funcionario
+            case 3://opÁ„o do cadastro de funcionario
                  while(true){   
                     try{
                         String nome = JOptionPane.showInputDialog("Forneca seu nome");
@@ -93,12 +87,12 @@ public class GuaraGasApp {
                         facade.inserirFuncionario(nome,codigo);
                         break;
                     }catch(NumberFormatException evento){
-                        JOptionPane.showMessageDialog(null, "Formato inv√°lido,informe valores n√∫mericos");
+                        JOptionPane.showMessageDialog(null, "Formato inv·lido,informe valores n˙mericos");
                     }
                     }
                 break;
                 
-            case 4://op√ß√£o listar usuario
+            case 4://opÁ„o listar usuario
                 ArrayList <Usuario> usuarios;
                 aux = "";
                 
@@ -109,7 +103,7 @@ public class GuaraGasApp {
                 JOptionPane.showMessageDialog(null, aux);
                 break;
                 
-            case 5://op√ß√£o listar cliente
+            case 5://opÁ„o listar cliente
                 ArrayList <Cliente> clientes;
                 aux = "";
                 
@@ -120,7 +114,7 @@ public class GuaraGasApp {
                 JOptionPane.showMessageDialog(null, aux);              
                 break;
                 
-            case 6://op√ß√£o listar funcionario
+            case 6://opÁ„o listar funcionario
                 ArrayList <Funcionario> funcionarios;
                 aux = "";
                 
@@ -136,13 +130,13 @@ public class GuaraGasApp {
                 break;
                 
             default :
-                JOptionPane.showMessageDialog(null, "Opcao Inv√°lida");
+                JOptionPane.showMessageDialog(null, "Opcao Inv·lida");
             } 
      }
         
     }
     
-    public static boolean verificarNome(String campo,int max, int min){
+    public static boolean verificarCampo(String campo,int max, int min){
         
         if((campo.length()>max)||(campo.length()<min)){
             return false;
@@ -156,9 +150,12 @@ public class GuaraGasApp {
         return true;
     }
     
-    public boolean verificarIdade(int campo,int max, int min){
-        return (campo <= max) && (campo >= min);
+    public static boolean verificarEmail(String email){
+    	
+    	if (email.indexOf("@") < 0) 
+    		return false;
+    	if((email.charAt(0)=='@')||(email.charAt(email.length()-1)=='@'))
+    		return false;
+    	return true;	
     }
-
-    
 }

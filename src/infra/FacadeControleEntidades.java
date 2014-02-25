@@ -1,24 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package infra;
 
-import excecoes.Excecoes;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-/**
- *
- * @author aluno
- */
+import excecoes.Excecoes;
 
 public class FacadeControleEntidades {
-    private static FacadeControleEntidades myInstance=null;
+	
+	private static FacadeControleEntidades myInstance=null;
     //Excecoes exercoes;
     ControleEntidades obj;
     
