@@ -1,6 +1,7 @@
 package gui;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
@@ -16,6 +17,7 @@ public class GuaraGasApp {
         String aux = "";
         
         int op=0; 
+        
         
         while(true){
             
@@ -104,11 +106,11 @@ public class GuaraGasApp {
                 break;
                 
             case 5://opção listar cliente
-                ArrayList <Cliente> clientes;
+                LinkedList<Cliente> cli = facade.listAllClientes();;
                 aux = "";
                 
-                clientes = facade.listAllClientes();
-                for(Cliente list : clientes){
+                
+                for(Cliente list : cli){
                     aux = "" + aux + "" + list.toString();
                 }
                 JOptionPane.showMessageDialog(null, aux);              

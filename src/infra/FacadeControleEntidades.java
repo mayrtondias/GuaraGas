@@ -1,9 +1,13 @@
 package infra;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import model.Cliente;
+import model.Funcionario;
+import model.Usuario;
 import excecoes.Excecoes;
 
 public class FacadeControleEntidades {
@@ -13,7 +17,7 @@ public class FacadeControleEntidades {
     ControleEntidades obj;
     
     private FacadeControleEntidades(){
-        obj = new ControleEntidades();
+        obj = new ControleEntidades(1);
     }
     
     public synchronized static FacadeControleEntidades getInstance() {  
@@ -27,7 +31,7 @@ public class FacadeControleEntidades {
     
     public void inserirUsuario(String nome, int senha, String cpf){
         try {
-            obj.inserirUsuario(nome,senha,cpf);
+            obj.inserirUsuario(new Usuario(nome,senha,cpf));
         } catch (Excecoes e) {
             e.trataExcecoes();
         }
@@ -35,7 +39,7 @@ public class FacadeControleEntidades {
     
     public void inserirCliente(String nome, String codigo){
         try {
-            obj.inserirCliente(nome, codigo);
+            obj.inserirCliente(new Cliente(nome, codigo));
         } catch (Excecoes ex) {
             Logger.getLogger(FacadeControleEntidades.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -43,7 +47,7 @@ public class FacadeControleEntidades {
     
     public void inserirFuncionario(String nome, String codigo){
         try {
-            obj.inserirFuncionario(nome, codigo);
+            obj.inserirFuncionario(new Funcionario (nome, codigo));
         } catch (Excecoes ex) {
             Logger.getLogger(FacadeControleEntidades.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,7 +57,7 @@ public class FacadeControleEntidades {
         return obj.listAllUsuarios();
     }
     
-    public  ArrayList listAllClientes(){
+    public  LinkedList<Cliente> listAllClientes(){
         return obj.listAllClientes();
     }
     

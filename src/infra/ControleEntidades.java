@@ -2,6 +2,9 @@ package infra;
 
 import java.util.ArrayList;
 
+
+import java.util.LinkedList;
+
 import excecoes.Excecoes;
 import model.Cliente;
 import model.Funcionario;
@@ -9,19 +12,22 @@ import model.Usuario;
 
 public class ControleEntidades {
 	ArrayList <Funcionario> funcionarios = new ArrayList <Funcionario>();
-    ArrayList <Cliente> clientes = new ArrayList <Cliente>();
     ArrayList <Usuario> usuarios = new ArrayList <Usuario>();
+    DAOFactory DAOCliente=null;
     
+    public ControleEntidades(int whichFactory){
+    	DAOCliente = DAOFactory.getDAOFactory(whichFactory);
+    }
+   
     //-------------------------------------Funcionario--------------------------------------------------------------------------------------
     //função responsavel pelo tratamento de exceção na operação de inserir funcionario
-    public void inserirFuncionario(String nome, String codigo ) throws Excecoes{
+    public void inserirFuncionario(Funcionario f ) throws Excecoes{
        
-        int verificacao = Integer.parseInt(codigo);
-        if(verificarDuplicidadeFuncionario(codigo)){
+        int verificacao = Integer.parseInt(f.getCodigo());
+        if(verificarDuplicidadeFuncionario(f.getCodigo())){
             throw new Excecoes("Código já existente \nAlgum funcionario cadastrado já o possui");
         }else{
-            Funcionario aux = new Funcionario(nome,codigo);
-            funcionarios.add(aux);
+            funcionarios.add(f);
         }
             
     }
@@ -41,37 +47,33 @@ public class ControleEntidades {
     
      //-------------------------------------------------Cliente------------------------------------------------------------------------------
     //função responsavel pelo tratamento de exceção na operação de inserir cliente
-    public void inserirCliente(String nome, String codigo ) throws Excecoes{
-        if(verificarDuplicidadeCliente(codigo)){
+    public void inserirCliente(Cliente c ) throws Excecoes{
+        if(verificarDuplicidadeCliente(c.getCodigo())){
             throw new Excecoes("Código já existente \nAlgum cliente cadastrado já o possui");
         }else{
-            Cliente aux = new Cliente(nome,codigo);
-            clientes.add(aux);
+            DAOCliente.add(c);
         }
             
     }
     //verifica a existencia de um cliente com o mesmo codigo
     public boolean verificarDuplicidadeCliente(String codigo){
-        for(Cliente aux2 : clientes){
-            if(aux2.getCodigo().equalsIgnoreCase(codigo)){
-                return true;
-            }
-        }
+    	Cliente c=DAOCliente.get(codigo);
+    	if(c!=null) return true;
         return false;
     }
     
-    public ArrayList listAllClientes(){
-        return clientes;
+    public LinkedList<Cliente> listAllClientes(){
+        return DAOCliente.listAll();
     }
     
     //----------------------------------------------------Usuario---------------------------------------------------------------------------
     //função responsavel pelo tratamento de exceção na operação de inserir  
-    public void inserirUsuario(String nome, int senha,String cpf ) throws Excecoes{
-        if(verificarDuplicidadeUsuario(cpf)){
+    public void inserirUsuario(Usuario u) throws Excecoes{
+        if(verificarDuplicidadeUsuario(u.getCpf())){
             throw new Excecoes("Cpf já existente \nAlgum usuario cadastrado já o possui");
         }else{
-            Usuario aux = new Usuario(nome,senha,cpf);
-            usuarios.add(aux);
+            
+            usuarios.add(u);
         }
             
     }
