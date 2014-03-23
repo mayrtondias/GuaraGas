@@ -16,14 +16,14 @@ public class FacadeControleEntidades {
     //Excecoes exercoes;
     ControleEntidades obj;
     
-    private FacadeControleEntidades(){
-        obj = new ControleEntidades(1);
+    private FacadeControleEntidades(int op){
+        obj = new ControleEntidades(op);
     }
     
-    public synchronized static FacadeControleEntidades getInstance() {  
+    public synchronized static FacadeControleEntidades getInstance(int op) {  
         
         if (myInstance == null) {
-            myInstance = new FacadeControleEntidades();
+            myInstance = new FacadeControleEntidades(op);
         }
         
         return myInstance;  
